@@ -8,8 +8,8 @@ namespace Model
         public long PostId { get; set; }
         public string Title { get; set; }
         public string Text { get; set; }
-        public DateTime Date { get; set; }
-        public double Votes { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
+        public double Votes { get; set; } = 0;
 
         public string User { get; set; }
         public List<Comment> Comments { get; set; }

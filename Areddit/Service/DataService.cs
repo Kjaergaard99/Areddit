@@ -41,9 +41,17 @@ namespace Service
         {
             return db.Posts.ToList();
         }
+
         public Post GetPost(int id)
         {
-            return db.Posts.Include(t => t.Comments).FirstOrDefault(t => t.PostId == id);
+            return db.Posts.Include(a => a.Comments).FirstOrDefault(a => a.PostId == id);
+        }
+
+        public string CreatePost(string title, string text, string user)
+        {
+            db.Posts.Add(new Post { Title = title, Text = text, User = user });
+            db.SaveChanges();
+            return "Post created";
         }
     }
 }

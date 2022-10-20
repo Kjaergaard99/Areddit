@@ -23,7 +23,7 @@ builder.Services.AddDbContext<PostContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("ContextSQLite")));
 
 
-// Tilføj DataService så den kan bruges i endpoints
+// Tilfï¿½j DataService sï¿½ den kan bruges i endpoints
 builder.Services.AddScoped<DataService>();
 
 var app = builder.Build();
@@ -32,7 +32,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dataService = scope.ServiceProvider.GetRequiredService<DataService>();
-    dataService.SeedData(); // Fylder data på, hvis databasen er tom. Ellers ikke.
+    dataService.SeedData(); // Fylder data pï¿½, hvis databasen er tom. Ellers ikke.
 }
 
 app.UseHttpsRedirection();
@@ -53,10 +53,23 @@ app.MapGet("/", (DataService service) =>
 
 app.MapGet("/api/posts", (DataService service) =>
 {
-    return service.GetPosts().Select(x => new { x.PostId, x.Title, x.Text, x.Date, x.Votes, x.User });
+    return service.GetPosts().Select(a => new { a.PostId, a.Title, a.Text, a.Date, a.User });
+});
+
+app.MapGet("/api/posts/{id}", (DataService service, int id) =>
+{
+    return service.GetPost(id);
+});
+
+app.MapPost("/api/posts", (DataService service, NewPostData data) =>
+{
+    string result = service.CreatePost(data.Title, data.Text, data.User);
+    return new { message = result };
 });
 
 
 
-
 app.Run();
+
+record NewPostData(string Title, string Text, string User);
+record NewCommentData(string CommentText, string CommentUser);

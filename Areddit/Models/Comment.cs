@@ -5,10 +5,10 @@ namespace Model
     {
         public long CommentId { get; set; }
         public string CommentText { get; set; }
-        public DateTime CommentDate { get; set; }
-        public double CommentVotes { get; set; }
+        public DateTime CommentDate { get; set; } = DateTime.Now;
+        public double CommentVotes { get; set; } = 0;
 
-        public string User { get; set; }
+        public string CommentUser { get; set; }
         public Comment()
         {
 
