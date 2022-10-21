@@ -12,7 +12,25 @@ namespace Model
         public double Votes { get; set; } = 0;
 
         public string User { get; set; }
+
         public List<Comment> Comments { get; set; }
+
+
+        public void UpVote()
+        {
+            Votes = Votes + 1;
+        }
+
+        public void DownVote()
+        {
+            Votes = Votes - 1;
+        }
+
+
+        public Post()
+        {
+
+        }
 
 
         public override string ToString()

@@ -30,19 +30,22 @@ namespace Areddit.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("CommentVotes")
-                        .HasColumnType("REAL");
-
-                    b.Property<long?>("PostId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("User")
+                    b.Property<string>("CommentUser")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<double>("CommentVotes")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long?>("PostId1")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("CommentId");
 
-                    b.HasIndex("PostId");
+                    b.HasIndex("PostId1");
 
                     b.ToTable("Comments");
                 });
@@ -80,7 +83,7 @@ namespace Areddit.Migrations
                 {
                     b.HasOne("Model.Post", null)
                         .WithMany("Comments")
-                        .HasForeignKey("PostId");
+                        .HasForeignKey("PostId1");
                 });
 
             modelBuilder.Entity("Model.Post", b =>

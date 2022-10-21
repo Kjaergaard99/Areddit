@@ -44,7 +44,7 @@ namespace Service
 
         public Post GetPost(int id)
         {
-            return db.Posts.Include(a => a.Comments).FirstOrDefault(a => a.PostId == id);
+            return db.Posts.FirstOrDefault(a => a.PostId == id);
         }
 
         public string CreatePost(string title, string text, string user)
@@ -53,6 +53,14 @@ namespace Service
             db.SaveChanges();
             return "Post created";
         }
+
+        public string CreateComment(string CommentText, string CommentUser, int id)
+        {
+            db.Comments.Add(new Comment { CommentText = CommentText, CommentUser = CommentUser, PostId = id});
+            db.SaveChanges();
+            return "Comment added";
+        }
+
     }
 }
 

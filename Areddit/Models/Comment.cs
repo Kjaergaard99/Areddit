@@ -9,6 +9,20 @@ namespace Model
         public double CommentVotes { get; set; } = 0;
 
         public string CommentUser { get; set; }
+
+        public int PostId { get; set; }
+
+        public void UpVoteComment()
+        {
+            CommentVotes = CommentVotes + 1;
+        }
+
+        public void DownVoteComment()
+        {
+            CommentVotes = CommentVotes - 1;
+        }
+
+
         public Comment()
         {
 
