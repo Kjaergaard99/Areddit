@@ -37,15 +37,12 @@ namespace Areddit.Migrations
                     b.Property<double>("CommentVotes")
                         .HasColumnType("REAL");
 
-                    b.Property<int>("PostId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long?>("PostId1")
+                    b.Property<long?>("PostId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("CommentId");
 
-                    b.HasIndex("PostId1");
+                    b.HasIndex("PostId");
 
                     b.ToTable("Comments");
                 });
@@ -83,7 +80,7 @@ namespace Areddit.Migrations
                 {
                     b.HasOne("Model.Post", null)
                         .WithMany("Comments")
-                        .HasForeignKey("PostId1");
+                        .HasForeignKey("PostId");
                 });
 
             modelBuilder.Entity("Model.Post", b =>

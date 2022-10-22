@@ -36,23 +36,22 @@ namespace Areddit.Migrations
                     CommentDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CommentVotes = table.Column<double>(type: "REAL", nullable: false),
                     CommentUser = table.Column<string>(type: "TEXT", nullable: false),
-                    PostId = table.Column<int>(type: "INTEGER", nullable: false),
-                    PostId1 = table.Column<long>(type: "INTEGER", nullable: true)
+                    PostId = table.Column<long>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.CommentId);
                     table.ForeignKey(
-                        name: "FK_Comments_Posts_PostId1",
-                        column: x => x.PostId1,
+                        name: "FK_Comments_Posts_PostId",
+                        column: x => x.PostId,
                         principalTable: "Posts",
                         principalColumn: "PostId");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_PostId1",
+                name: "IX_Comments_PostId",
                 table: "Comments",
-                column: "PostId1");
+                column: "PostId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

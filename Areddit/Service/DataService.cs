@@ -54,9 +54,11 @@ namespace Service
             return "Post created";
         }
 
-        public string CreateComment(string CommentText, string CommentUser, int id)
+        public string CreateComment(string? CommentText, string? CommentUser, int? id)
         {
-            db.Comments.Add(new Comment { CommentText = CommentText, CommentUser = CommentUser, PostId = id});
+            Comment newComment = new Comment { CommentText = CommentText, CommentUser = CommentUser };
+            Post post = db.Posts.FirstOrDefault(a => a.PostId == id);
+            post.Comments.Add(newComment);
             db.SaveChanges();
             return "Comment added";
         }
