@@ -68,9 +68,9 @@ app.MapPost("/api/posts", (DataService service, NewPostData data) =>
 });
 
 
-app.MapPost("/api/posts/{id}", (DataService service, NewCommentData? data, int? id) =>
+app.MapPost("/api/posts/{id}", (DataService service, NewCommentData? data, int id) =>
 {
-    string result = service.CreateComment(data.CommentText, data.CommentUser, id);
+    string result = service.CreateComment(data.CommentText, data.CommentUser, id = 1);
     return new { message = result };
 });
 
