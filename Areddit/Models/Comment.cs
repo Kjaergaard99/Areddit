@@ -11,7 +11,6 @@ namespace Model
         public string CommentUser { get; set; }
 
 
-
         public void UpVoteComment()
         {
             CommentVotes = CommentVotes + 1;

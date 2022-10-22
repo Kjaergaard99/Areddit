@@ -13,7 +13,7 @@ namespace Model
 
         public string User { get; set; }
 
-        public List<Comment>? Comments { get; set; }
+        public List<Comment> Comments { get; set; }
 
 
         public void UpVote()

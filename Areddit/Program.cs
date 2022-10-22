@@ -53,7 +53,7 @@ app.MapGet("/", (DataService service) =>
 
 app.MapGet("/api/posts", (DataService service) =>
 {
-    return service.GetPosts().Select(a => new { a.PostId, a.Title, a.Text, a.Date, a.User });
+    return service.GetPosts();
 });
 
 app.MapGet("/api/posts/{id}", (DataService service, int id) =>
@@ -68,9 +68,9 @@ app.MapPost("/api/posts", (DataService service, NewPostData data) =>
 });
 
 
-app.MapPost("/api/posts/{id}", (DataService service, NewCommentData? data, int id) =>
+app.MapPost("/api/posts/{id}/comments", (DataService service, NewCommentData data, int id) =>
 {
-    string result = service.CreateComment(data.CommentText, data.CommentUser, id = 1);
+    string result = service.CreateComment(data.CommentText, data.CommentUser);
     return new { message = result };
 });
 
@@ -78,4 +78,4 @@ app.MapPost("/api/posts/{id}", (DataService service, NewCommentData? data, int i
 app.Run();
 
 record NewPostData(string Title, string Text, string User);
-record NewCommentData(string? CommentText, string? CommentUser);
+record NewCommentData(string CommentText, string CommentUser);

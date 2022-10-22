@@ -31,6 +31,7 @@ namespace Service
                 db.Posts.Add(new Post { Title = "Test2", Text = "Det her er nummer 2", User = "Daniel", Date = DateTime.Now });
                 db.Posts.Add(new Post { Title = "Test3", Text = "Dette er en test", User = "Mads", Date = DateTime.Now });
             }
+
             db.SaveChanges();
         }
 
@@ -54,11 +55,12 @@ namespace Service
             return "Post created";
         }
 
-        public string CreateComment(string? CommentText, string? CommentUser, int id)
+
+        public string CreateComment(string CommentText, string CommentUser)
         {
-            Comment newComment = new Comment { CommentText = CommentText, CommentUser = CommentUser };
-            Post post = db.Posts.FirstOrDefault(a => a.PostId == id);
-            post.Comments.Add(newComment);
+            
+            Comment newComment = new Comment { CommentText = CommentText, CommentUser = CommentUser};
+            db.Comments.Add(newComment);
             db.SaveChanges();
             return "Comment added";
         }

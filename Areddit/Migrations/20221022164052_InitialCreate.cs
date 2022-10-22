@@ -15,7 +15,7 @@ namespace Areddit.Migrations
                 {
                     PostId = table.Column<long>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Title = table.Column<string>(type: "TEXT", nullable: true),
+                    Title = table.Column<string>(type: "TEXT", nullable: false),
                     Text = table.Column<string>(type: "TEXT", nullable: false),
                     Date = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Votes = table.Column<double>(type: "REAL", nullable: false),
@@ -34,7 +34,7 @@ namespace Areddit.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     CommentText = table.Column<string>(type: "TEXT", nullable: false),
                     CommentDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    CommentVotes = table.Column<double>(type: "REAL", nullable: false),
+                    CommentVotes = table.Column<double>(type: "REAL", nullable: true),
                     CommentUser = table.Column<string>(type: "TEXT", nullable: false),
                     PostId = table.Column<long>(type: "INTEGER", nullable: true)
                 },

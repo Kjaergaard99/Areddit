@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Areddit.Migrations
 {
     [DbContext(typeof(PostContext))]
-    [Migration("20221022141831_InitialCreate")]
+    [Migration("20221022164052_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,7 +36,7 @@ namespace Areddit.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("CommentVotes")
+                    b.Property<double?>("CommentVotes")
                         .HasColumnType("REAL");
 
                     b.Property<long?>("PostId")
@@ -63,6 +63,7 @@ namespace Areddit.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("User")
