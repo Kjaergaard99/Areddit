@@ -70,8 +70,18 @@ app.MapPost("/api/posts", (DataService service, NewPostData data) =>
 
 app.MapPost("/api/posts/{id}/comments", (DataService service, NewCommentData data, int id) =>
 {
-    string result = service.CreateComment(data.CommentText, data.CommentUser);
+    string result = service.CreateComment(data.CommentText, data.CommentUser, id);
     return new { message = result };
+});
+
+app.MapPut("api/posts/{id}/upvote", (DataService service, int id) =>
+{
+    return service.UpvotePost(id);
+});
+
+app.MapPut("api/posts/{id}/downvote", (DataService service, int id) =>
+{
+    return service.DownvotePost(id);
 });
 
 

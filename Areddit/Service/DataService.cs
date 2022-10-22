@@ -56,15 +56,32 @@ namespace Service
         }
 
 
-        public string CreateComment(string CommentText, string CommentUser)
+        public string CreateComment(string CommentText, string CommentUser, int id)
         {
-            
+            Post commentPost = new Post();
+            commentPost = GetPost(id);
             Comment newComment = new Comment { CommentText = CommentText, CommentUser = CommentUser};
             db.Comments.Add(newComment);
+            commentPost.Comments.Add(newComment);
             db.SaveChanges();
             return "Comment added";
         }
 
+        public Post UpvotePost(int id)
+        {
+            Post upvotedPost = db.Posts.FirstOrDefault(a => a.PostId == id);
+            upvotedPost.Upvote();
+            db.SaveChanges();
+            return db.Posts.FirstOrDefault(a => a.PostId == id);
+        }
+
+        public Post DownvotePost(int id)
+        {
+            Post upvotedPost = db.Posts.FirstOrDefault(a => a.PostId == id);
+            upvotedPost.Downvote();
+            db.SaveChanges();
+            return db.Posts.FirstOrDefault(a => a.PostId == id);
+        }
     }
 }
 

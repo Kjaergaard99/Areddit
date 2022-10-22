@@ -16,14 +16,14 @@ namespace Model
         public List<Comment> Comments { get; set; }
 
 
-        public void UpVote()
+        public void Upvote()
         {
-            Votes = Votes + 1;
+            Votes += 1;
         }
 
-        public void DownVote()
+        public void Downvote()
         {
-            Votes = Votes - 1;
+            Votes -= 1;
         }
 
 
