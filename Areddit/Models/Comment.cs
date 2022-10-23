@@ -6,19 +6,19 @@ namespace Model
         public long CommentId { get; set; }
         public string CommentText { get; set; }
         public DateTime CommentDate { get; set; } = DateTime.Now;
-        public double? CommentVotes { get; set; } = 0;
+        public double CommentVotes { get; set; } = 0;
 
         public string CommentUser { get; set; }
 
 
-        public void UpVoteComment()
+        public void UpvoteComment()
         {
-            CommentVotes = CommentVotes + 1;
+            CommentVotes += 1;
         }
 
-        public void DownVoteComment()
+        public void DownvoteComment()
         {
-            CommentVotes = CommentVotes - 1;
+            CommentVotes -= 1;
         }
 
 

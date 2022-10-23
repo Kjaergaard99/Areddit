@@ -37,7 +37,7 @@ namespace Service
 
 
 
-
+        // post aktioner
         public List<Post> GetPosts()
         {
             return db.Posts.ToList();
@@ -55,18 +55,6 @@ namespace Service
             return "Post created";
         }
 
-
-        public string CreateComment(string CommentText, string CommentUser, int id)
-        {
-            Post commentPost = new Post();
-            commentPost = GetPost(id);
-            Comment newComment = new Comment { CommentText = CommentText, CommentUser = CommentUser};
-            db.Comments.Add(newComment);
-            commentPost.Comments.Add(newComment);
-            db.SaveChanges();
-            return "Comment added";
-        }
-
         public Post UpvotePost(int id)
         {
             Post upvotedPost = db.Posts.FirstOrDefault(a => a.PostId == id);
@@ -81,6 +69,27 @@ namespace Service
             upvotedPost.Downvote();
             db.SaveChanges();
             return db.Posts.FirstOrDefault(a => a.PostId == id);
+        }
+
+        // comment aktioner
+        public string CreateComment(string CommentText, string CommentUser, int id)
+        {
+            Post commentPost = db.Posts.FirstOrDefault(a => a.PostId == id);
+            Comment newComment = new Comment { CommentText = CommentText, CommentUser = CommentUser };
+            db.Comments.Add(newComment);
+            commentPost.Comments.Add(newComment);
+            db.SaveChanges();
+            return "Comment added";
+        }
+
+        public Comment UpvoteComment()
+        {
+
+        }
+
+        public Comment DownvoteComment()
+        {
+
         }
     }
 }
