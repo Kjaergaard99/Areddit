@@ -82,6 +82,7 @@ namespace Service
             return "Comment added";
         }
 
+        /*
         public Comment UpvoteComment()
         {
 
@@ -91,6 +92,7 @@ namespace Service
         {
 
         }
+        */
     }
 }
 
