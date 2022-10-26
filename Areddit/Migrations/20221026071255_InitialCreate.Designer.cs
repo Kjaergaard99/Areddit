@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Areddit.Migrations
 {
     [DbContext(typeof(PostContext))]
-    [Migration("20221025062327_InitialCreate")]
+    [Migration("20221026071255_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

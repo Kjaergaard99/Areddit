@@ -76,9 +76,10 @@ namespace Service
         }
 
         // comment aktioner
-        public string CreateComment(string CommentText, string CommentUser, long PostId)
+        public string CreateComment(string CommentText, string CommentUser, int PostId)
         {
-            Comment newComment = new Comment { CommentText = CommentText, CommentUser = CommentUser, PostId = PostId };
+            Post commentPost = db.Posts.FirstOrDefault(a => a.PostId == PostId);
+            Comment newComment = new Comment { CommentText = CommentText, CommentUser = CommentUser, PostId = commentPost.PostId };
             db.Comments.Add(newComment);
             db.SaveChanges();
             return "Comment added";
