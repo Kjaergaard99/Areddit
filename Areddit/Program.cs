@@ -99,3 +99,7 @@ app.Run();
 
 record NewPostData(string Title, string Text, string User);
 record NewCommentData(string CommentText, string CommentUser, int PostId);
+
+
+
+// kjær != goat
