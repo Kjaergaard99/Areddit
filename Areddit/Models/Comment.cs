@@ -10,6 +10,8 @@ namespace Model
 
         public string CommentUser { get; set; }
 
+        public long PostId { get; set; }
+
 
         public void UpvoteComment()
         {

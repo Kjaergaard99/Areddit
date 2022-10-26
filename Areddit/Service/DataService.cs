@@ -40,12 +40,16 @@ namespace Service
         // post aktioner
         public List<Post> GetPosts()
         {
-            return db.Posts.ToList();
+            List<Post> posts = db.Posts.ToList();
+            return posts;
         }
 
         public Post GetPost(int id)
         {
-            return db.Posts.FirstOrDefault(a => a.PostId == id);
+            Post post = db.Posts.FirstOrDefault(a => a.PostId == id);
+            List<Comment> postComments = db.Comments.Where(a => a.PostId == id).ToList();
+            post.Comments = postComments;
+            return post;
         }
 
         public string CreatePost(string title, string text, string user)
@@ -72,27 +76,29 @@ namespace Service
         }
 
         // comment aktioner
-        public string CreateComment(string CommentText, string CommentUser, int id)
+        public string CreateComment(string CommentText, string CommentUser, long PostId)
         {
-            Post commentPost = db.Posts.FirstOrDefault(a => a.PostId == id);
-            Comment newComment = new Comment { CommentText = CommentText, CommentUser = CommentUser };
+            Comment newComment = new Comment { CommentText = CommentText, CommentUser = CommentUser, PostId = PostId };
             db.Comments.Add(newComment);
-            commentPost.Comments.Add(newComment);
             db.SaveChanges();
             return "Comment added";
         }
 
-        /*
-        public Comment UpvoteComment()
+        public Comment UpvoteComment(int id)
         {
-
+            Comment upvotedComment = db.Comments.FirstOrDefault(a => a.CommentId == id);
+            upvotedComment.UpvoteComment();
+            db.SaveChanges();
+            return upvotedComment;
         }
 
-        public Comment DownvoteComment()
+        public Comment DownvoteComment(int id)
         {
-
+            Comment downvotedComment = db.Comments.FirstOrDefault(a => a.CommentId == id);
+            downvotedComment.DownvoteComment();
+            db.SaveChanges();
+            return downvotedComment;
         }
-        */
     }
 }
 

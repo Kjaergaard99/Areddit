@@ -34,9 +34,9 @@ namespace Areddit.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     CommentText = table.Column<string>(type: "TEXT", nullable: false),
                     CommentDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    CommentVotes = table.Column<double>(type: "REAL", nullable: true),
+                    CommentVotes = table.Column<double>(type: "REAL", nullable: false),
                     CommentUser = table.Column<string>(type: "TEXT", nullable: false),
-                    PostId = table.Column<long>(type: "INTEGER", nullable: true)
+                    PostId = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,7 +45,8 @@ namespace Areddit.Migrations
                         name: "FK_Comments_Posts_PostId",
                         column: x => x.PostId,
                         principalTable: "Posts",
-                        principalColumn: "PostId");
+                        principalColumn: "PostId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

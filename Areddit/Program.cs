@@ -68,9 +68,9 @@ app.MapPost("/api/posts", (DataService service, NewPostData data) =>
 });
 
 
-app.MapPost("/api/posts/{id}/comments", (DataService service, NewCommentData data, int id) =>
+app.MapPost("/api/posts/{id}/comments", (DataService service, NewCommentData data) =>
 {
-    string result = service.CreateComment(data.CommentText, data.CommentUser, id);
+    string result = service.CreateComment(data.CommentText, data.CommentUser, data.PostId);
     return new { message = result };
 });
 
@@ -84,8 +84,18 @@ app.MapPut("api/posts/{id}/downvote", (DataService service, int id) =>
     return service.DownvotePost(id);
 });
 
+app.MapPut("api/comments/{id}/upvote", (DataService service, int id) =>
+{
+    return service.UpvoteComment(id);
+});
+
+app.MapPut("api/comments/{id}/downvote", (DataService service, int id) =>
+{
+    return service.DownvoteComment(id);
+});
+
 
 app.Run();
 
 record NewPostData(string Title, string Text, string User);
-record NewCommentData(string CommentText, string CommentUser);
+record NewCommentData(string CommentText, string CommentUser, long PostId);
