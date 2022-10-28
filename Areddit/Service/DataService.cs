@@ -27,7 +27,7 @@ namespace Service
             Post post = db.Posts.FirstOrDefault()!;
             if (post == null)
             {
-                db.Posts.Add(new Post { Title = "Test1", Text = "Det her er nummer 1", User = "Mads-Emil", Date = DateTime.Now });
+                db.Posts.Add(new Post { Title = "Test1", Text = "Det her er nummer 1", User = "Mads-Emil != the goat", Date = DateTime.Now });
                 db.Posts.Add(new Post { Title = "Test2", Text = "Det her er nummer 2", User = "Daniel", Date = DateTime.Now });
                 db.Posts.Add(new Post { Title = "Test3", Text = "Dette er en test", User = "Mads", Date = DateTime.Now });
                 db.Posts.Add(new Post { Title = "Hugo Boss", Text = "Han designede nazi-uniformer", User = "Hugo Helmig", Date = DateTime.Now });
