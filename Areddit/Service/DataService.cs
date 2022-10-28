@@ -84,7 +84,7 @@ namespace Service
         }
 
 
-
+        //wtf
         // post aktioner
         public List<Post> GetPosts()
         {
